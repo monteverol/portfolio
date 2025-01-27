@@ -1,7 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Carousel = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const autoplay = () => {
+    if (currentIndex < children.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  }
+
+  setTimeout(() => {
+    autoplay();
+  }, 5000);
 
   return (
     <div className="relative w-full h-full overflow-hidden">

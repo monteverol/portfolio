@@ -4,7 +4,7 @@ import TailwindCSS from './icons/tailwindcss';
 import PostgreSQL from './icons/postgresql';
 import Python from './icons/python';
 
-const Project = ({ key, title, date, description, languages }) => {
+const Project = ({ title, date, description, languages }) => {
     const iconMapping = {
         reactjs: <ReactJS />,
         tailwindcss: <TailwindCSS />,
@@ -13,7 +13,7 @@ const Project = ({ key, title, date, description, languages }) => {
     };
 
     return(
-        <div key={key} className="h-full w-full flex flex-row justify-between items-center">
+        <div className="h-full w-full flex flex-row justify-between items-center">
             {/* DESCRIPTION */}
             <div className="h-full w-1/2 flex flex-col gap-4">
                 <h1 className="text-6xl text-background font-bold"> {title} </h1>

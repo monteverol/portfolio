@@ -5,7 +5,7 @@ import Project from '../components/project';
 const ProjectPage = () => {
     const projects = [
         {
-            title: "Reserach Gap Finder",
+            title: "Research t Gap Finder",
             date: "December, 2024",
             description: "A website tool to collect and analyze thesis libraries to identify research gaps and underexplored fields in various disciplines.",
             languages: ["reactjs", "tailwindcss", "python"],
