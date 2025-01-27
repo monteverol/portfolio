@@ -14,7 +14,7 @@ const LandingPage = () => {
                 </div>
                 <div className="h-full w-1/2 flex flex-col items-start justify-center">
                     <h1 className="text-cc_bg font-bold text-9xl">Batulan,<br />Ayan</h1>
-                    <h5 className="text-cc_bg text-xl mt-8">
+                    <h5 className="text-cc_bg text-xl mt-8 w-1/2">
                         An aspiring Computer Scientist with a strong foundation in Machine Learning, Data Science, and Software Development, seeking to leverage
                         analytical and programming skills to develop innovative solutions and contribute to impactful projects in a dynamic, growth-oriented organization.
                     </h5>
