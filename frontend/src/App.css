@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --background: #f1e6e6;
+  --cc-bg: #412722;
+  --button-bg: #DFA06E;
+  --icon: #412722;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Hanuman", serif;
+  user-select: none;
+  transition: 0.2s ease-in-out;
+}
+
+.pksans {
+  font-family: "Parkinsans", sans-serif;
+}
+
+.invert-bg {
+  mix-blend-mode: difference;
+}
+
+/* .customCard_tr::after {
+  content: '';
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  background: red;
+} */
