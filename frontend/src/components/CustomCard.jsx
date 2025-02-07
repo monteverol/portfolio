@@ -10,6 +10,11 @@ const CustomCard = () => {
     window.open(url, "_blank", "noreferrer");
   }
 
+  const fetchResume = () => {
+    const resumeUrl = "http://localhost:5000/api/v1/resume";
+    window.open(resumeUrl, "_blank");
+  }
+
   return (
     <div className="relative h-3/5 w-3/4 bg-cc_bg rounded-large p-8">
       {/* IMAGE */}
@@ -19,7 +24,9 @@ const CustomCard = () => {
 
       {/* UPPER RIGHT */}
       <div className="absolute top-0 right-0 min-h-20 w-20 bg-background rounded-bl-large customCard_tr flex flex-col gap-4 items-center justify-center p-4 pt-0 pr-0">
-        <div className="w-16 h-16 bg-button_bg rounded-full cursor-pointer flex items-center justify-center hover:bg-cc_bg group drop-shadow-xl">
+        <div 
+          onClick={fetchResume}
+          className="w-16 h-16 bg-button_bg rounded-full cursor-pointer flex items-center justify-center hover:bg-cc_bg group drop-shadow-xl">
           <FaPrint className="text-icon group-hover:text-background" size={40} />
         </div>
       </div>
