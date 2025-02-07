@@ -19,7 +19,9 @@ const Project = ({ title, date, description, languages }) => {
                 <h1 className="text-6xl text-background font-bold"> {title} </h1>
                 {/* PROGRAMMING LANGUAGES */}
                 <div className="w-full flex flex-wrap gap-4">
-                    {languages.map((lang) => iconMapping[lang.toLowerCase()] || null)}
+                    {languages.map((lang, index) => (
+                        <div key={index}> {iconMapping[lang.toLowerCase()] || null} </div>
+                    ))}
                 </div>
                 <h2 className="font-bold text-2xl text-background text-right"> {date} </h2>
                 <p className="text-2xl text-background">
