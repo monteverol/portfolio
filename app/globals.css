@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Beige Color Palette */
+  --background: #FAF8F3;
+  --foreground: #2C2416;
+
+  --card: #FFFFFF;
+  --card-foreground: #2C2416;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #2C2416;
+
+  --primary: #D4A574;
+  --primary-foreground: #2C2416;
+
+  --secondary: #E8DCC8;
+  --secondary-foreground: #2C2416;
+
+  --muted: #F0EBE0;
+  --muted-foreground: #6B6456;
+
+  --accent: #C9A882;
+  --accent-foreground: #2C2416;
+
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E0D5C7;
+  --input: #E0D5C7;
+  --ring: #D4A574;
+
+  --radius: 0.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #1A1612;
+  --foreground: #F5EFE7;
+
+  --card: #2C2416;
+  --card-foreground: #F5EFE7;
+
+  --popover: #2C2416;
+  --popover-foreground: #F5EFE7;
+
+  --primary: #D4A574;
+  --primary-foreground: #1A1612;
+
+  --secondary: #4A4035;
+  --secondary-foreground: #F5EFE7;
+
+  --muted: #3A332A;
+  --muted-foreground: #B8AE9F;
+
+  --accent: #8B7355;
+  --accent-foreground: #F5EFE7;
+
+  --destructive: #EF4444;
+  --destructive-foreground: #F5EFE7;
+
+  --border: #3A332A;
+  --input: #3A332A;
+  --ring: #D4A574;
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+  }
+}
+
+/* Smooth scroll behavior with snap */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth scroll snapping */
+main {
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve scroll snap on Safari */
+@supports (scroll-snap-type: y mandatory) {
+  section {
+    scroll-snap-stop: always;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  /* Better touch scrolling on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom animation delays */
+.delay-700 {
+  animation-delay: 700ms;
 }
