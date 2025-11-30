@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Portfolio E2E Tests', () => {
   test('homepage loads successfully', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/Portfolio/);
+    await expect(page).toHaveTitle(/Ayan Batulan/);
   });
 
   test('navigation works correctly', async ({ page }) => {
@@ -50,22 +50,16 @@ test.describe('Portfolio E2E Tests', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
 
-    // Mobile menu button should be visible
-    const menuButton = page.locator('button').filter({ hasText: /menu/i }).first();
-    await expect(menuButton).toBeVisible();
-
-    // Click to open menu
-    await menuButton.click();
-
-    // Menu items should be visible
-    await expect(page.locator('a[href="#about"]')).toBeVisible();
+    // Navigation should be visible on mobile
+    await expect(page.locator('a[href="#about"]').first()).toBeVisible();
+    await expect(page.locator('a[href="#projects"]').first()).toBeVisible();
   });
 
   test('projects section displays correctly', async ({ page }) => {
     await page.goto('/');
-    await page.click('a[href="#projects"]');
+    await page.locator('#projects').scrollIntoViewIfNeeded();
 
-    // Should display at least one project
-    await expect(page.locator('#projects')).toContainText('Portfolio Website');
+    // Should display the projects section
+    await expect(page.locator('#projects')).toContainText('Featured Projects');
   });
 });

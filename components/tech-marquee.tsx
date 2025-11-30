@@ -75,7 +75,7 @@ function MarqueeRow({
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startPos, setStartPos] = useState(0);
-  const lastTimeRef = useRef<number>(Date.now());
+  const lastTimeRef = useRef<number>(0);
   const lastPosRef = useRef<number>(0);
 
   // Duplicate techs for infinite scroll

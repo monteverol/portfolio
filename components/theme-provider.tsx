@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useRef } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -16,36 +16,29 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Function to get initial theme from localStorage or system preference
-const getInitialTheme = (defaultTheme: Theme): Theme => {
+// Function to get initial theme - only called once during component initialization
+function getStoredTheme(defaultTheme: Theme): Theme {
   if (typeof window === "undefined") return defaultTheme;
 
   const storedTheme = localStorage.getItem("theme") as Theme | null;
-  if (storedTheme) return storedTheme;
+  if (storedTheme && (storedTheme === "light" || storedTheme === "dark")) {
+    return storedTheme;
+  }
 
+  // Fall back to system preference
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   return prefersDark ? "dark" : "light";
-};
+}
 
 export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [mounted, setMounted] = useState(false);
-  const initialized = useRef(false);
+  // Use lazy initializer to avoid setState in useEffect
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return defaultTheme;
+    return getStoredTheme(defaultTheme);
+  });
 
-  // Load theme from localStorage on mount
+  // Apply theme to document and save to localStorage
   useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      const initialTheme = getInitialTheme(defaultTheme);
-      setTheme(initialTheme);
-      setMounted(true);
-    }
-  }, [defaultTheme]);
-
-  // Apply theme to document
-  useEffect(() => {
-    if (!mounted) return;
-
     const root = document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
@@ -55,16 +48,11 @@ export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProvide
 
     // Save to localStorage
     localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
-
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

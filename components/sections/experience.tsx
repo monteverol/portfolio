@@ -88,26 +88,6 @@ export function ExperienceSection() {
   const [expandedCards, setExpandedCards] = useState<number[]>([0]); // First card expanded by default
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-            animateSection();
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
-
   const animateSection = () => {
     const timeline = anime.timeline({
       easing: "easeOutExpo",
@@ -140,6 +120,26 @@ export function ExperienceSection() {
       "-=1200"
     );
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            animateSection();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
 
   const toggleCard = (index: number) => {
     setExpandedCards(prev =>

@@ -26,7 +26,7 @@ export function HeroSection() {
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   useEffect(() => {
     const timeline = anime.timeline({
