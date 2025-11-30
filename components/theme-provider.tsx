@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 
 type Theme = "light" | "dark";
 
@@ -16,22 +16,31 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Function to get initial theme from localStorage or system preference
+const getInitialTheme = (defaultTheme: Theme): Theme => {
+  if (typeof window === "undefined") return defaultTheme;
+
+  const storedTheme = localStorage.getItem("theme") as Theme | null;
+  if (storedTheme) return storedTheme;
+
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return prefersDark ? "dark" : "light";
+};
+
 export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [mounted, setMounted] = useState(false);
+  const initialized = useRef(false);
 
   // Load theme from localStorage on mount
   useEffect(() => {
-    setMounted(true);
-    const storedTheme = localStorage.getItem("theme") as Theme | null;
-    if (storedTheme) {
-      setTheme(storedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
+    if (!initialized.current) {
+      initialized.current = true;
+      const initialTheme = getInitialTheme(defaultTheme);
+      setTheme(initialTheme);
+      setMounted(true);
     }
-  }, []);
+  }, [defaultTheme]);
 
   // Apply theme to document
   useEffect(() => {

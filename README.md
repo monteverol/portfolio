@@ -47,7 +47,7 @@ A modern, responsive portfolio website built to showcase software engineering sk
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/monteverol/portfolio.git
 cd portfolio
 ```
 
@@ -233,10 +233,12 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub](https://github.com/yourusername)
+- **Email**: ayanbatulan2132@gmail.com
+- **Phone**: +63 (908) 319-3522
+- **Location**: Metro Manila, Philippines
+- **LinkedIn**: [Ayan Batulan](https://www.linkedin.com/in/ayan-batulan-83a6302a4/)
+- **GitHub**: [@monteverol](https://github.com/monteverol)
 
 ---
 
-Built with by [Your Name]
+Built with by Ayan Batulan

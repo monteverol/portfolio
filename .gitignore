@@ -52,3 +52,6 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# Claude Code
+.claude
